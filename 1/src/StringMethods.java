@@ -1,7 +1,14 @@
+import Example.SecondPackage.Example; // импорт пакета с классом Example
+
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class StringMethods {
     public static void main(String[] args) {
+        // Модификаторы доступа
+        Example ex = new Example();
+        //Logger log = new Logger();
+
         // 21.2.1
         System.out.println("Sometimes".charAt(2));
 
