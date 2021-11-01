@@ -31,7 +31,12 @@ public class StringMethods {
             String name = scanner.nextLine(); //Считывает строку из System.in
             isCorrectName = checkName(name);
             if (!isCorrectName) System.out.println("Введите корректное имя!");
+            else {
+                // 21.2.8.3
+                System.out.println(formatName(name));
+            }
         }
+
 
         // Хранение строк
         String a = "22";
@@ -125,7 +130,39 @@ public class StringMethods {
 
     }
 
+    private static void sortByLength(String[] words) {
+        // Самое короткое слово в имени должно быть на первом месте, а самое длинное — на последнем, то есть отсортируйте слова в имени по длине.
+        for (int i = 0; i < words.length - 1; i++) { // для прохода по всем словам (без него сортировка применяется один раз)
+            for (int j = 0; j < words.length - 1; j++) {
+                if (words[j].length() > words[j + 1].length()) {
+                    String tmp = words[j];
+                    words[j] = words[j + 1];
+                    words[j + 1] = tmp;
+                }
+            }
+        }
+    }
+
+    private static String formatName(String name) {
+        String[] words = name.trim().split(" ");
+        sortByLength(words);
+        // каждое первое слово в имени было написано с большой буквы
+        String result = "";
+        for (int i = 0; i < words.length; i++) {
+            String str = words[i];
+            char firstChar = str.charAt(0);
+            if (!Character.isUpperCase(firstChar)) {
+                result += Character.toUpperCase(firstChar) + str.substring(1) + " ";
+            } else {
+                result += str + " ";
+            }
+        }
+        return result;
+    }
+
     private static boolean checkName(String name) {
+        // 1st version
+        /*
         int i = 0;
         String[] newS = name.split(" ");
         while (i < newS.length) {
@@ -134,6 +171,11 @@ public class StringMethods {
         if (i == 3) {
             return true;
         } else return false;
+        */
+
+        //2nd version
+        String[] words = name.trim().split(" ");
+        return words.length == 3;
     }
 
     private static String removeWhiteSpaces(String s) {
