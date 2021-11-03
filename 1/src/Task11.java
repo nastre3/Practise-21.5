@@ -3,13 +3,30 @@ public class Task11 {
 
     public static String encrypt(String text, int shift) {
         // code here...
+        String result = "";
+
+        for(int i=0;i<text.length();i++) {
+            if (text.charAt(i)>64 && text.charAt(i)<91 || text.charAt(i)>96 && text.charAt(i)<123) {
+                result +=  (char)(text.charAt(i) + shift);
+            } else result +=  (char)text.charAt(i);
+        }
+        return result;
     }
 
     public static String decrypt(String text, int shift) {
         // code here...
+        String result = "";
+
+        for(int i=0;i<text.length();i++) {
+            if (text.charAt(i)==95 || text.charAt(i)<64) {
+                result +=  (char)text.charAt(i);
+            } else result += (char)(text.charAt(i) - shift);
+        }
+        return result;
     }
 
     public static void main(String[] args) {
         System.out.println(encrypt(text, 5));
+        System.out.println(decrypt(encrypt(text, 5), 5));
     }
 }
