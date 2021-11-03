@@ -6,9 +6,9 @@ public class Task11 {
         String result = "";
 
         for(int i=0;i<text.length();i++) {
-            if (text.charAt(i)>64 && text.charAt(i)<91 || text.charAt(i)>96 && text.charAt(i)<123) {
+           if (text.charAt(i)>64 && text.charAt(i)<91 || text.charAt(i)>96 && text.charAt(i)<123) {
                 result +=  (char)(text.charAt(i) + shift);
-            } else result +=  (char)text.charAt(i);
+           } else result +=  (char)text.charAt(i);
         }
         return result;
     }
@@ -23,6 +23,7 @@ public class Task11 {
             } else result += (char)(text.charAt(i) - shift);
         }
         return result;
+       // return encrypt(text, -shift); // работает без условия if в encrypt шифровать только английские буквы
     }
 
     public static void main(String[] args) {
